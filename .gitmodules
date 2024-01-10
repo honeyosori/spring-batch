@@ -1,0 +1,3 @@
+[submodule "chan91/sample"]
+	path = chan91/sample
+	url = https://github.com/ChanYoungChoi/def-guide-spring-batch.git
