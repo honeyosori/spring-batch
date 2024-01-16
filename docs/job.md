@@ -49,6 +49,9 @@ public B preventRestart() {
 ```
 
 #### SimpleJobLauncher
+
+JobLauncher 인터페이스의 구현클래스
+
 ```java
 public JobExecution run(final Job job, final JobParameters jobParameters) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
     Assert.notNull(job, "The Job must not be null.");
@@ -78,3 +81,85 @@ public JobExecution run(final Job job, final JobParameters jobParameters) throws
 ### listener()
 
 [JobExecutionListener](https://github.com/spring-projects/spring-batch/blob/main/spring-batch-core/src/main/java/org/springframework/batch/core/JobExecutionListener.java)를 통해 Job 실행 전/후로 수행해야 하는 로직을 설정한다.
+
+## Job 실행하는 여러가지 방법
+
+1. 스프링 부트 기동시 Job이 실행되지 않게 구성
+
+```yaml
+## application.yml
+spring:
+  batch:
+    job:
+      enable: false # default: true
+```
+
+2. 특정 Job만 실행하고 싶을 때
+```yaml
+## application.yml
+  spring:
+    batch:
+      job:
+        name: jobName1,JobName2...
+```
+
+3. REST API 방식으로 Job 실행하기
+
+```java
+
+@RestController
+public static class JobLaunchingController {
+    
+  @Autowired
+  private JobLauncher jobLauncher;
+  
+  @Autowired
+  private ApplicationContext context;
+  
+  @PostMapping("/run")
+  public ExitStatus runJob(@RequestBody JobLaunchRequest request) {
+      
+    Job job = this.context.getBean(request.getName(), Job.class);
+    return this.jobLauncher.run(job, request.getJobParameters());
+    getExitStatus();
+      
+  }
+
+}
+
+@AllArgsConstructor
+@Getter
+public static class JobLaunchRequest {
+
+    private String name;
+    private Properties jobParameters;
+
+    public getJobParameters() {
+        Properties properties = new Properties();
+        properties.putAll(this.jobParameters);
+        return new JobParametersBuilder(properties)
+            .toJobParameters();
+    }
+}
+```
+
+## Job 중지하기
+
+- 자연스러운 종료
+  - 모든 Step이 COMPLETED을 반환하면, JOB 자신도 COMPLETED 종료 코드 반환
+- 인위적인 개입이 필요한 순간
+  - 로직에 오류가 있어 중단해야 하는 경우
+  - How?
+    - StepExecution.setTerminateOnly()
+      - ExitStatus.STOPPED
+    - throw Exception을 발생 
+      - ExitStatus.FAILED
+    - STOPPED vs FAILED
+      - STOPPED는 그대로 종료?
+      - FAILED는 청크 단위로 rollback과 완료된 청크는 Skip
+        - Example
+          - chunk1 ◼︎◼︎◼︎◼︎◼︎
+          - chunk2 ◼︎◼︎◼︎☒◻
+          - chunk3 ◻︎◻︎◻︎◻︎◻︎
+        - 예를들어 chunk2의 4번째 Item에서 Exception이 발생하는 경우
+        - chunk2의 1~4는 Rollback되며 재 실행시, chunk1은 skip, chunk2의 첫 번째 item부터 실행

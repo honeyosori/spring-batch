@@ -11,7 +11,7 @@
 | 주차 | 내용                | 숙제             |
 | --- |--------------------|--------------|
 | 1주차 | 스프링 배치 도메인 이해 | Job (찬영) / Step (수윤) / Execution Context (경진) / JobRepository, Job Launcher (규성)
-| 2주차 | Job과 Step |  Job (규성, 경진) / Step (찬영, 수윤)
+| 2주차 | Job과 Step |  Job (찬영, 수윤) / Step (규성, 경진)
 | 3주차 | Flow |
 | 4주차 | 청크 프로세스 |
 | 5주차 | 반복 및 오류 제어 |
