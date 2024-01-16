@@ -82,7 +82,7 @@ public JobExecution run(final Job job, final JobParameters jobParameters) throws
 
 [JobExecutionListener](https://github.com/spring-projects/spring-batch/blob/main/spring-batch-core/src/main/java/org/springframework/batch/core/JobExecutionListener.java)를 통해 Job 실행 전/후로 수행해야 하는 로직을 설정한다.
 
-## Job 실행하기
+## Job 실행하는 여러가지 방법
 
 1. 스프링 부트 기동시 Job이 실행되지 않게 구성
 
@@ -91,7 +91,7 @@ public JobExecution run(final Job job, final JobParameters jobParameters) throws
 spring:
   batch:
     job:
-      enable: false
+      enable: false # default: true
 ```
 
 2. 특정 Job만 실행하고 싶을 때
