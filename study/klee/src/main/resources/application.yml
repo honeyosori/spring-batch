@@ -1,0 +1,18 @@
+spring:
+  batch:
+    job:
+      names: ${job.name:NONE}
+      # 모든 잡이 실행되는 것을 막음. 실행 인자로 job.name을 넘겨주면 해당 잡만 실행됨.
+    # 운영환경에서 배치 스키마를 자동으로 생성하지 않도록 설정
+    jdbc:
+      initialize-schema:
+  datasource:
+    url: jdbc:mariadb://192.168.20.106:3307/spring_batch?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+    # bulk insert를 위한 설정 rewriteBatchedStatements=true
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: tj.qkdlqm
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
