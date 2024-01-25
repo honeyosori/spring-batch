@@ -1,4 +1,4 @@
-package com.spring.batch.week2;
+package com.spring.batch.week3;
 
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.StepExecution;
