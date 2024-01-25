@@ -68,6 +68,18 @@ public Job job() {
 ```
 
 ## 플로우 외부화
-- FlowBuilder
-- Flow step
+```java
+public Flow stepFlow() {
+    return new FlowBuilder<Flow>("stepFlow")
+        .start(step1())
+        .next(step2());
+}
+```
+- FlowBuilder 
+```stepBuilderFactory.get("step1").start(stepFlow()).build()```
+- Flow step 
+```stepBuilderFactory.get("step1").flow(stepFlow()).build()```
+  - 해당 플로우가 담긴 스텝을 하나의 스텝처럼 기록
+  - 개별 스텝 집계가 필요하지 않고 전체 흐름을 모니터링할 때 사용
 - Job step
+  - 잡 내에서 다른 잡 호출
