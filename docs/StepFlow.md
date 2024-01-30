@@ -76,7 +76,7 @@ public Flow stepFlow() {
 }
 ```
 - FlowBuilder 
-```stepBuilderFactory.get("step1").start(stepFlow()).build()```
+```jobBuilderFactory.get("job1").start(stepFlow()).build()```
 - Flow step 
 ```stepBuilderFactory.get("step1").flow(stepFlow()).build()```
   - 해당 플로우가 담긴 스텝을 하나의 스텝처럼 기록
