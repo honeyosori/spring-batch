@@ -76,10 +76,16 @@ public Flow stepFlow() {
 }
 ```
 - FlowBuilder 
-```stepBuilderFactory.get("step1").start(stepFlow()).build()```
+```jobBuilderFactory.get("job1").start(stepFlow()).build()```
 - Flow step 
 ```stepBuilderFactory.get("step1").flow(stepFlow()).build()```
   - 해당 플로우가 담긴 스텝을 하나의 스텝처럼 기록
   - 개별 스텝 집계가 필요하지 않고 전체 흐름을 모니터링할 때 사용
 - Job step
   - 잡 내에서 다른 잡 호출
+
+## 질문
+- 플로우 외부화 개념 중 Flow step이 구체적으로 어떻게 job repository에 기록되는지?
+![steFlow.png](imgs/stepFlow.png)
+플로우에 담긴 스텝들도 각각 기록되지만 추가로 플로우를 래핑한 스텝이 하나 더 기록되는 것을 확인할 수 있었습니다.
+이를 통해 플로우에 대한 전반적인 흐름을 모니터링할 수 있는 데이터로 사용 가능합니다. 
