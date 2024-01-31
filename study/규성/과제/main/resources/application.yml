@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: mysql
+
+---
+spring:
+
+  sql:
+    init:
+      mode: always
+#      continue-on-error: true
+      data-locations: classpath:sql/data.sql
+      schema-locations: classpath:sql/init.sql
+
+  config:
+    activate:
+      on-profile: mysql
+
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/springbatch?useUnicode=true&characterEncoding=utf8
+      username: batchmaster
+      password:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
