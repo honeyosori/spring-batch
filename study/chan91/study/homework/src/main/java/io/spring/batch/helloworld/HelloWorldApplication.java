@@ -1,0 +1,17 @@
+package io.spring.batch.helloworld;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Random;
+import java.util.UUID;
+
+@EnableBatchProcessing
+@SpringBootApplication
+public class HelloWorldApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HelloWorldApplication.class, args);
+	}
+}
