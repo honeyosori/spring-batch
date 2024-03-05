@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld.job;
 
+import io.spring.batch.helloworld.step.ChunkStepConfiguration;
 import io.spring.batch.helloworld.step.StepConfiguration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -16,6 +17,7 @@ public class JobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepConfiguration stepConfiguration;
+    private final ChunkStepConfiguration chunkStepConfiguration;
 
     @Bean
     public Job job() {
@@ -23,8 +25,9 @@ public class JobConfiguration {
         String randomJobName = String.valueOf(UUID.randomUUID());
 
         return this.jobBuilderFactory.get(randomJobName)
-                .start(stepConfiguration.step1())
-                .next(stepConfiguration.step2())
+                .start(chunkStepConfiguration.simpleChunkStep2())
+//                .start(stepConfiguration.step1())
+//                .next(stepConfiguration.step2())
                 .build();
     }
 
