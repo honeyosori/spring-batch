@@ -33,6 +33,8 @@
 - 실행 횟수 또는 완료 시기, 오류 발생 시 수행할 작업에 대한 반복 여부를 결정한다.
 - 정상 종료를 알리는데 사용된다.
 
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/70bad44a-c040-4507-88a6-825a3e038d8f)
+
 ```java
 package com.spring.batch;
 
@@ -125,6 +127,8 @@ public class RepeatConfiguration {
 - RepeatCallBack 안에서 예외가 발생하면 RepeatTemplate 이 ExceptionHandler 를 참조해서 예외를 다시 던질지 여부를 결정한다.
 - 예외를 받아서 다시 던지게 되면 반복을 종료한다.
 - 비정상 종료를 알리는데 사용된다.
+
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/964002d1-b1d6-43e3-9598-9fe2be8e2c6a)
 
 ```java
 @Configuration

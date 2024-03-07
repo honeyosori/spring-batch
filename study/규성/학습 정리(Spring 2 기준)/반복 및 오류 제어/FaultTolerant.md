@@ -12,9 +12,15 @@
 
 ## 구조
 
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/731a9260-d59e-4128-9975-82b5acc2d1d3)
+
+>Step은 RepeatTemplate을 사용해 Tasklet을 반복적으로 실행합니다. ChunkOrientedTasklet은 내부적으로 ChunkProvider를 통해 ItemReader로 데이터를 읽어올 것을 지시합니다. ChunkProvider는 내부적으로 RepeatTemplate을 갖고 있고 이를 이용해 반복적으로 ItemReader에게 반복적으로 데이터를 읽어오도록 처리합니다.
+
 ## API 
 
 > StepBuilderFactory > StepBuilder > FaultTolerantStepBuilder > TaskletStep
+
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/1837c159-3395-4a7c-8c31-dcba0243dfee)
 
 ## 전체 처리 과정
 
