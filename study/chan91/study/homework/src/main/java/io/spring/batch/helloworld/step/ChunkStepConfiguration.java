@@ -5,10 +5,11 @@ import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Random;
 
 @Configuration
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class ChunkStepConfiguration {
     private int num = 0;
 
     @Bean
-    public Step simpleChunkStep2() {
+    public Step simpleChunkStep() {
         return
                 this.stepBuilderFactory.get("simpleChunkStep")
                         .<String, String>chunk(CHUNK_SIZE)
@@ -33,8 +34,10 @@ public class ChunkStepConfiguration {
 
     @Bean
     public ItemWriter<String> simpleItemWriter() {
-        return (input) -> {
-            System.out.println(input + "입니다.");
+        return (inputList) -> {
+            inputList.forEach(input -> {
+                System.out.println(input + "입니다.");
+            });
         };
     }
 
@@ -50,7 +53,21 @@ public class ChunkStepConfiguration {
     public ItemReader<String> simpleItemReader() {
 //        repeat Templeate
 
-        return () -> new RandomString(10).nextString();
+        return new ItemReader<String>() {
+            int i = 0;
+
+            @Override
+            public String read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+                i++;
+
+                if (i > 100) {
+                    return null;
+                }
+
+                return new RandomString().nextString();
+            }
+        };
+
     }
 
     @Bean
