@@ -25,7 +25,7 @@ public class JobConfiguration {
         String randomJobName = String.valueOf(UUID.randomUUID());
 
         return this.jobBuilderFactory.get(randomJobName)
-                .start(chunkStepConfiguration.simpleChunkStep2())
+                .start(chunkStepConfiguration.simpleChunkStep())
 //                .start(stepConfiguration.step1())
 //                .next(stepConfiguration.step2())
                 .build();
