@@ -18,7 +18,7 @@
 | 6주차 | 청크 프로세스 2 - 활용 | ItemReader(경진) / ItemProcessor(규성) / ItemWriter(찬영) |    |
 | 7주차 | 부족한 부분 보완 / 과제(주제 자유) |
 | 8주차 | 반복 및 오류 제어 | Repeat & FaultTolerant (규성, 경진) / Skip & Retry (수윤, 찬영)
-| 9주차 | 멀티 스레드 프로세싱 |
+| 9주차 | 멀티 스레드 프로세싱 | AsyncItemProcessor & AsyncItemWriter & Multi-threaded Step & Parallel Steps (규성, 찬영) / Partitioning & SynchronizedItemStreamReader (경진, 수윤) 
 | 10주차 | 이벤트 리스너 |
 | 11주차 | 테스트 및 운영 |
 
