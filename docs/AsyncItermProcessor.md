@@ -5,7 +5,11 @@
     * [1.2. 예제](#12-예제)
   * [2. 다중 스레드 스텝(Multi Thread Step)](#2-다중-스레드-스텝multi-thread-step)
     * [2.1. 개요](#21-개요)
+    * [2.2. 다중 스레드 스텝](#22-다중-스레드-스텝-)
+    * [2.3. 예제](#23-예제)
   * [3. 병렬 스텝(Parallel Steps)](#3-병렬-스텝parallel-steps)
+    * [3.1. 개요](#31-개요)
+    * [3.2. 예제](#32-예제)
 <!-- TOC -->
 
 ## 1. AsyncItemProcessor와 AsyncItemWriter
@@ -93,9 +97,10 @@ public Step step1async() {
 - ItemReader는 상태 저장(Job 재시작시 중단 위치를 찾기 위해)
 - Multi Thread 환경에서는 saveState(false)를 통해 상태 저장 X
 
-#### 2.1.1. 다중 스레드 스텝 
+### 2.2. 다중 스레드 스텝 
 ![](https://www.javacodebook.com/wp-content/uploads/2013/09/fig23-24.jpg)
 
+### 2.3. 예제
 ```java
 
 @Bean
@@ -112,3 +117,52 @@ public Step step1() {
 
 
 ## 3. 병렬 스텝(Parallel Steps)
+
+### 3.1. 개요
+```mermaid
+flowchart LR
+  스텝1 --> 스텝2 --> 스텝3 --> 스텝5
+  스텝1 --> 스텝4 --> 스텝5
+```
+
+### 3.2. 예제
+```java
+@Bean
+public Job job(JobRepository jobRepository) {
+    return new JobBuilder("job", jobRepository)
+        .start(splitFlow())
+        .next(step4())
+        .build()        //builds FlowJobBuilder instance
+        .build();       //builds Job instance
+}
+
+@Bean
+public Flow splitFlow() {
+    return new FlowBuilder<SimpleFlow>("splitFlow")
+        .split(taskExecutor())
+        .add(flow1(), flow2())
+        .build();
+}
+
+@Bean
+public Flow flow1() {
+    return new FlowBuilder<SimpleFlow>("flow1")
+        .start(step1())
+        .next(step2())
+        .build();
+}
+
+@Bean
+public Flow flow2() {
+    return new FlowBuilder<SimpleFlow>("flow2")
+        .start(step3())
+        .build();
+}
+
+@Bean
+public TaskExecutor taskExecutor() {
+    return new SimpleAsyncTaskExecutor("spring_batch");
+}
+```
+
+[docs.spring.io 참고](https://docs.spring.io/spring-batch/reference/scalability.html)
