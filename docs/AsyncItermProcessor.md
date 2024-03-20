@@ -3,10 +3,9 @@
   * [1. AsyncItemProcessor와 AsyncItemWriter](#1-asyncitemprocessor와-asyncitemwriter)
     * [1.1. 개요](#11-개요)
     * [1.2. 예제](#12-예제)
-  * [2. AsyncItemWriter](#2-asyncitemwriter)
-  * [3. 다중 스레드 스텝(Multi Thread Step)](#3-다중-스레드-스텝multi-thread-step)
-  * [4. 병렬 스텝(Parallel Steps)](#4-병렬-스텝parallel-steps)
-  * [5. 병렬 스텝(Parallel Steps) 구성하기](#5-병렬-스텝parallel-steps-구성하기)
+  * [2. 다중 스레드 스텝(Multi Thread Step)](#2-다중-스레드-스텝multi-thread-step)
+    * [2.1. 개요](#21-개요)
+  * [3. 병렬 스텝(Parallel Steps)](#3-병렬-스텝parallel-steps)
 <!-- TOC -->
 
 ## 1. AsyncItemProcessor와 AsyncItemWriter
@@ -75,8 +74,8 @@ public Step step1async() {
 }
 
 // asyncItemProcessor를 사용하기 위해서는
-// chunk 두번째 제네릭 타입 Future 이여야 한다.
-//  Future는 Javascript의 Promise 또는 Callback 함수 같은 느낌으로 이해되었음
+// chunk 두번째 제네릭 타입 Future
+// Future는 Javascript의 Promise 또는 Callback 함수 같은 느낌으로 이해되었음
 
 @Bean Job asyncJob(){
     return this.jobBuilderFactory.get("asyncJob")
@@ -87,7 +86,29 @@ public Step step1async() {
 ```
 
 
-## 2. AsyncItemWriter
-## 3. 다중 스레드 스텝(Multi Thread Step)
-## 4. 병렬 스텝(Parallel Steps)
-## 5. 병렬 스텝(Parallel Steps) 구성하기
+## 2. 다중 스레드 스텝(Multi Thread Step)
+### 2.1. 개요
+- 스텝은 기본적으로 단일 스레드로 동작
+- Multi Thread Step == 잡의 실행을 병렬화 하는 가장 쉬운 방법
+- ItemReader는 상태 저장(Job 재시작시 중단 위치를 찾기 위해)
+- Multi Thread 환경에서는 saveState(false)를 통해 상태 저장 X
+
+#### 2.1.1. 다중 스레드 스텝 
+![](https://www.javacodebook.com/wp-content/uploads/2013/09/fig23-24.jpg)
+
+```java
+
+@Bean
+public Step step1() {
+    return this.stepBuilderFacotyr.get("step1")
+        .<Transaction,Transaction>chunk(100)
+        .reader(fileTransactionReader(null))
+        .writer(writer(null))
+        .taskExecutor(new SimpleAsyncTaskExecutor()) //taskExecutor로 SimpleAsyncTaskExecutor를 주입한다
+        .build();
+}
+
+```
+
+
+## 3. 병렬 스텝(Parallel Steps)
