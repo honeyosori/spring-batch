@@ -158,3 +158,60 @@ public class CustomItemWriteListener implements ItemWriteListener {
 }
 
 ```
+
+## 실행 결과
+
+```json
+2024-03-28 00:32:07.108  INFO 15540 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [step1]
+2024-03-28 00:32:07.116  INFO 15540 --- [           main] c.s.b.l.chunk.CustomChunkListener        : before chunk
+2024-03-28 00:32:07.117  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.117  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 1
+2024-03-28 00:32:07.118  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.118  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 2
+2024-03-28 00:32:07.118  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.118  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 3
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 4
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 5
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 6
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 7
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 8
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 9
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : after read : 10
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 1
+2024-03-28 00:32:07.119  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 1, result : 11
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 2
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 2, result : 12
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 3
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 3, result : 13
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 4
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 4, result : 14
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 5
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 5, result : 15
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 6
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 6, result : 16
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 7
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 7, result : 17
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 8
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 8, result : 18
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 9
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 9, result : 19
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : before process : 10
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemProcessListener  : after process : 10, result : 20
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemWriteListener    : before write
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.c.ChunkListenerConfiguration     : items : [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+2024-03-28 00:32:07.120  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemWriteListener    : after write
+2024-03-28 00:32:07.124  INFO 15540 --- [           main] c.s.b.l.chunk.CustomChunkListener        : after chunk
+2024-03-28 00:32:07.124  INFO 15540 --- [           main] c.s.b.l.chunk.CustomChunkListener        : before chunk
+2024-03-28 00:32:07.124  INFO 15540 --- [           main] c.s.b.l.chunk.CustomItemReadListener     : before read
+2024-03-28 00:32:07.127  INFO 15540 --- [           main] c.s.b.l.chunk.CustomChunkListener        : after chunk
+2024-03-28 00:32:07.128  INFO 15540 --- [           main] o.s.batch.core.step.AbstractStep         : Step: [step1] executed in 20ms
+2024-03-28 00:32:07.134  INFO 15540 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=batchJob]] completed with the following parameters: [{name=user, seq=2, date=1711553527032, age=16.5}] and the following status: [COMPLETED] in 34ms
+
+```
