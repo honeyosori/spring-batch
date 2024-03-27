@@ -1,6 +1,8 @@
 package io.spring.batch.helloworld.step;
 
 import io.spring.batch.helloworld.dao.MemberRepository;
+import io.spring.batch.helloworld.listener.StepListener1;
+import io.spring.batch.helloworld.listener.StepListener2;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.batch.core.Step;
@@ -9,14 +11,15 @@ import org.springframework.batch.item.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Random;
-
 @Configuration
 @RequiredArgsConstructor
 public class ChunkStepConfiguration {
 
     private final StepBuilderFactory stepBuilderFactory;
     private final MemberRepository memberRepository;
+
+    private final StepListener1 stepListener1; // Annotation 기반
+    private final StepListener2 stepListener2; // Impl 기반
 
     private static final int CHUNK_SIZE = 10;
 
@@ -29,6 +32,8 @@ public class ChunkStepConfiguration {
                         .<String, String>chunk(CHUNK_SIZE)
                         .reader(simpleItemReader())
                         .writer(simpleItemWriter())
+                        .listener(stepListener1)
+                        .listener(stepListener2)
                         .build();
     }
 
