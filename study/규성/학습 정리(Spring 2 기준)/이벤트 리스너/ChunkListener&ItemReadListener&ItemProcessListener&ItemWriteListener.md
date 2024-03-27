@@ -2,10 +2,13 @@
 
 ## ChunkListener / ItemReadListener
 
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/da004b64-d499-4ff3-aaa4-7d12b68988ad)
+
 > 둘 다 Object 타입을 지원한다 (Annotation 방식)
 
 ## ItemProcessListener / ItemWriteListener
 
+![image](https://github.com/honeyosori/spring-batch/assets/53935439/93d9b58e-f7d7-461c-804b-c0f5578b7c05)
 
 ## 예제 코드
 
