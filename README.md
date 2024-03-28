@@ -20,6 +20,5 @@
 | 8주차 | 반복 및 오류 제어 | Repeat & FaultTolerant (규성, 경진) / Skip & Retry (수윤, 찬영)
 | 9주차 | 멀티 스레드 프로세싱 | AsyncItemProcessor & AsyncItemWriter & Multi-threaded Step & Parallel Steps (규성, 찬영) / Partitioning & SynchronizedItemStreamReader (경진, 수윤) 
 | 10주차 | 이벤트 리스너, 테스트 및 운영 | 이벤트 리스너 (규성, 찬영), 테스트 및 운영 (경진, 수윤)
-| 11주차 |  |
-
+| 11주차 | Final round | 자율 주제 과제
 
