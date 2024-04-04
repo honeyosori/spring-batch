@@ -7,12 +7,23 @@ spring:
     jdbc:
       initialize-schema: never
   datasource:
-    url: jdbc:mariadb://testdb.com:3306/spring_batch?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
-    # bulk insert를 위한 설정 rewriteBatchedStatements=true
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: root
-    password: root
+    member:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://testdb.com:3306/dev_member?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+    batch:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://testdb.com:3306/spring_batch?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+      # bulk insert를 위한 설정 rewriteBatchedStatements=true
+      username: root
+      password: root
+    eas:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://testdb-pg.com:5432/dev_eas
+      username:
+      password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
